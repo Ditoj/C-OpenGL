@@ -1,0 +1,34 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "Build OpenGL File",
+			"command": "C:\\msys64\\ucrt64\\bin\\gcc.exe",
+			"args": [
+				"-I${cwd}/include",
+				"-L${cwd}/lib",
+				"${cwd}/src/main.c",
+				"${cwd}/src/glad.c",
+				"${cwd}/include/vertex_buffer/vertex_buffer.c",
+				"${cwd}/include/vertex_array/vertex_array.c",
+				"${cwd}/include/shader/shader.c",
+				"${cwd}/include/file/file.c",
+				"-lglfw3dll",
+				"-lopengl32",
+				"-o${cwd}/bin/${fileBasenameNoExtension}.exe"
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "compiler: C:\\msys64\\ucrt64\\bin\\gcc.exe"
+		}
+	]
+}
