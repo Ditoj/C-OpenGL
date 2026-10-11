@@ -68,7 +68,7 @@ void attachShaderProgram(ShaderProgram* program, Shader* shader) {
 	glAttachShader(program->index, shader->index);
 }
 
-int linkShaderProgram(ShaderProgram* program) {
+int linkShaderProgram(ShaderProgram* program, bool deleteShaders) {
 	glLinkProgram(program->index);
 
 	GLint success;
@@ -77,15 +77,20 @@ int linkShaderProgram(ShaderProgram* program) {
 		char errorLog[1024];
 		glGetProgramInfoLog(program->index, 1024, NULL, errorLog);
 
-		fprintf(stderr, errorLog);
+		fprintf(stderr, "%s", errorLog);
 
 		return 0;
 	}
 
-	if(program->attachedShaders[SHADER_VERTEX])   glDetachShader(program->index, program->attachedShaders[SHADER_VERTEX]->index);
-	if(program->attachedShaders[SHADER_FRAGMENT]) glDetachShader(program->index, program->attachedShaders[SHADER_FRAGMENT]->index);
-	if(program->attachedShaders[SHADER_GEOMETRY]) glDetachShader(program->index, program->attachedShaders[SHADER_GEOMETRY]->index);
-	if(program->attachedShaders[SHADER_COMPUTE])  glDetachShader(program->index, program->attachedShaders[SHADER_COMPUTE]->index);
+	if(deleteShaders) {
+		for(int i = 0; i < 4; ++ i) {
+			if(program->attachedShaders[i]) {
+				glDetachShader(program->index, program->attachedShaders[i]->index);
+				freeShader(program->attachedShaders[i]);
+				program->attachedShaders[i] = NULL;
+			}
+		}
+	}
 
 	return 1;
 }
@@ -99,6 +104,7 @@ void resetTargetProgram() {
 }
 
 void initShader(Shader* shader) {
+	shader->index  = 0;
 	shader->type   = SHADER_ERROR;
 	shader->source = NULL;
 }
@@ -128,7 +134,7 @@ int loadShaderFromFile(Shader* shader, const char* path) {
 
 int loadShaderFromSource(Shader* shader, SHADER_TYPE type, char* source) {
 	shader->type   = type;
-	shader->source = source;
+	shader->source = strdup(source);
 
 	return loadShader(shader);
 }
@@ -142,6 +148,8 @@ static int loadShader(Shader* shader) {
 		case SHADER_FRAGMENT: type = GL_FRAGMENT_SHADER; break;
 		case SHADER_GEOMETRY: type = GL_GEOMETRY_SHADER; break;
 		case SHADER_COMPUTE:  type = GL_COMPUTE_SHADER;  break;
+
+		default: return 0;
 	}
 
 	shader->index = glCreateShader(type);
@@ -155,7 +163,7 @@ static int loadShader(Shader* shader) {
 		char errorLog[1024];
 		glGetShaderInfoLog(shader->index, 1024, NULL, errorLog);
 
-		fprintf(stderr, errorLog);
+		fprintf(stderr, "%s", errorLog);
 
 		return 0;
 	}

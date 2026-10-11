@@ -1,6 +1,8 @@
 #ifndef program_shader_h
 #define program_shader_h
 
+#include "common/common.h"
+
 typedef enum {
 	SHADER_VERTEX,
 	SHADER_FRAGMENT,
@@ -24,7 +26,7 @@ void initShaderProgram(ShaderProgram* program);
 void freeShaderProgram(ShaderProgram* program);
 void freeAttachedShaders(ShaderProgram* program);
 void attachShaderProgram(ShaderProgram* program, Shader* shader);
-int linkShaderProgram(ShaderProgram* program);
+int linkShaderProgram(ShaderProgram* program, bool deleteShaders);
 void setTargetProgram(ShaderProgram* program);
 void resetTargetProgram();
 

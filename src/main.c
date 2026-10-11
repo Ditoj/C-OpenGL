@@ -92,7 +92,7 @@ int main() {
 	attachShaderProgram(&program, &fragment);
 	attachShaderProgram(&program, &vertex);
 
-	linkShaderProgram(&program);
+	linkShaderProgram(&program, true);
 
 	glClearColor(0.1f, 0.2f, 0.6f, 1.f);
 
@@ -113,7 +113,6 @@ int main() {
 
 	freeVBO(&vbo);
 	freeVAO(&vao);
-	freeAttachedShaders(&program);
 	freeShaderProgram(&program);
 
 	glfwDestroyWindow(window);
@@ -121,10 +120,10 @@ int main() {
 }
 
 static void errorCallback(int error, const char* description) {
-	fprintf(stderr, "(GLFW) Error [%d]: %s\n", error, description);
+	fprintf(stderr, "%s", "(GLFW) Error [%d]: %s\n", error, description);
 }
 
 static void error(int code, const char* description) {
-	fprintf(stderr, "Error [%d]: %s", code, description);
+	fprintf(stderr, "%s", "Error [%d]: %s", code, description);
 	exit(code);
 }

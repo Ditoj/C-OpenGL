@@ -1,7 +1,6 @@
 #include "vertex_array/vertex_array.h"
 
 void initVAO(VAO* vao) {
-	vao->index          = 0;
 	vao->attributeCount = 0;
 	vao->offset         = 0;
 	vao->stride         = 0;
