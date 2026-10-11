@@ -17,17 +17,22 @@
 static void errorCallback(int error, const char* description);
 static void error(int code, const char* description);
 
-char* FRAGMENT_SOURCE =
-"#version 330 core\n"
-"void main() {\n"
-"	gl_FragColor = vec4(1.);"
-"}";
-
 char* VERTEX_SOURCE =
 "#version 330 core\n"
-"in vec2 in_Position;\n"
+"layout (location = 0) in vec2 in_position;\n"
+"layout (location = 1) in vec3 in_color;\n"
+"out vec3 out_color;\n"
 "void main() {\n"
-"	gl_Position = vec4(in_Position, 0., 1.);"
+"	out_color   = in_color;"
+"	gl_Position = vec4(in_position, 0., 1.);"
+"}";
+
+char* FRAGMENT_SOURCE =
+"#version 330 core\n"
+"in vec3 out_color;"
+"out vec4 fragColor;"
+"void main() {\n"
+"	fragColor = vec4(out_color, 1.);"
 "}";
 
 int main() {
@@ -53,24 +58,24 @@ int main() {
 		error(GLAD_LOAD_ERROR, "Error getting GLAD GL loader.");
 	}
 
-	float vertexData[6] = {
-		-0.5, -0.5,
-		 0.5, -0.5,
-		 0.0,  0.5
+	float vertexData[] = {
+		-0.5, -0.5, 1., 0., 0.,
+		 0.5, -0.5, 0., 1., 0.,
+		 0.0,  0.5, 0., 0., .5
 	};
 
 	VBO vbo;
 	initVBO(&vbo);
-	generateVBO(&vbo);
 	setTargetVBO(&vbo);
-	updateVBO(&vbo, vertexData, sizeof(vertexData));
+	sendDataVBO(vertexData, sizeof(vertexData));
 
 	VAO vao;
 	initVAO(&vao);
-	generateVAO(&vao);
 	setTargetVAO(&vao);
+	addAttributeVAO(&vao, 2, GL_FLOAT);
+	addAttributeVAO(&vao, 3, GL_FLOAT);
+	patchVAO(&vao);
 
-	updateVAO(&vao);
 	resetTargetVBO();
 	resetTargetVAO();
 
@@ -81,15 +86,15 @@ int main() {
 	Shader vertex;
 	initShader(&fragment);
 	initShader(&vertex);
-	loadShaderFromSource(&fragment, SHADER_FRAGMENT, FRAGMENT_SOURCE);
 	loadShaderFromSource(&vertex, SHADER_VERTEX, VERTEX_SOURCE);
+	loadShaderFromSource(&fragment, SHADER_FRAGMENT, FRAGMENT_SOURCE);
 
 	attachShaderProgram(&program, &fragment);
 	attachShaderProgram(&program, &vertex);
 
 	linkShaderProgram(&program);
 
-	glClearColor(1.f, 0.f, 0.f, 1.f);
+	glClearColor(0.1f, 0.2f, 0.6f, 1.f);
 
 	while(!glfwWindowShouldClose(window)) {
 		glClear(GL_COLOR_BUFFER_BIT);

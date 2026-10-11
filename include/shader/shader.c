@@ -7,20 +7,20 @@
 #include <string.h>
 
 void initShaderProgram(ShaderProgram* program) {
-	if(program->index != 0 && glIsProgram(program->index)) glDeleteProgram(program->index);
-
 	program->index = glCreateProgram();
 	for(int i = 0; i < 4; ++ i) program->attachedShaders[i] = NULL;
 }
 
 void freeShaderProgram(ShaderProgram* program) {
 	glDeleteProgram(program->index);
-	initShaderProgram(program);
+
+	program->index = 0;
+	for(int i = 0; i < 4; ++ i) program->attachedShaders[i] = NULL;
 }
 
 void freeAttachedShaders(ShaderProgram* program) {
-	if(program->attachedShaders[SHADER_FRAGMENT]) freeShader(program->attachedShaders[SHADER_FRAGMENT]);
 	if(program->attachedShaders[SHADER_VERTEX])   freeShader(program->attachedShaders[SHADER_VERTEX]);
+	if(program->attachedShaders[SHADER_FRAGMENT]) freeShader(program->attachedShaders[SHADER_FRAGMENT]);
 	if(program->attachedShaders[SHADER_GEOMETRY]) freeShader(program->attachedShaders[SHADER_GEOMETRY]);
 	if(program->attachedShaders[SHADER_COMPUTE])  freeShader(program->attachedShaders[SHADER_COMPUTE]);
 }
@@ -28,18 +28,18 @@ void freeAttachedShaders(ShaderProgram* program) {
 void attachShaderProgram(ShaderProgram* program, Shader* shader) {
 	int mask = 0;
 	switch(shader->type) {
-		case SHADER_FRAGMENT: {
-			if(!program->attachedShaders[SHADER_FRAGMENT]) {
-				program->attachedShaders[SHADER_FRAGMENT] = shader;
+		case SHADER_VERTEX: {
+			if(!program->attachedShaders[SHADER_VERTEX]) {
+				program->attachedShaders[SHADER_VERTEX] = shader;
 				break;
 			}
 
 			return; //shader already attached
 		}
 
-		case SHADER_VERTEX: {
-			if(!program->attachedShaders[SHADER_VERTEX]) {
-				program->attachedShaders[SHADER_VERTEX] = shader;
+		case SHADER_FRAGMENT: {
+			if(!program->attachedShaders[SHADER_FRAGMENT]) {
+				program->attachedShaders[SHADER_FRAGMENT] = shader;
 				break;
 			}
 
@@ -82,8 +82,8 @@ int linkShaderProgram(ShaderProgram* program) {
 		return 0;
 	}
 
-	if(program->attachedShaders[SHADER_FRAGMENT]) glDetachShader(program->index, program->attachedShaders[SHADER_FRAGMENT]->index);
 	if(program->attachedShaders[SHADER_VERTEX])   glDetachShader(program->index, program->attachedShaders[SHADER_VERTEX]->index);
+	if(program->attachedShaders[SHADER_FRAGMENT]) glDetachShader(program->index, program->attachedShaders[SHADER_FRAGMENT]->index);
 	if(program->attachedShaders[SHADER_GEOMETRY]) glDetachShader(program->index, program->attachedShaders[SHADER_GEOMETRY]->index);
 	if(program->attachedShaders[SHADER_COMPUTE])  glDetachShader(program->index, program->attachedShaders[SHADER_COMPUTE]->index);
 
@@ -116,8 +116,8 @@ int loadShaderFromFile(Shader* shader, const char* path) {
 	char type[256];
 	getFileExtension(path, type);
 
-	if(!strncmp(type, "fsh", 3)) shader->type = SHADER_FRAGMENT;
 	if(!strncmp(type, "vsh", 3)) shader->type = SHADER_VERTEX;
+	if(!strncmp(type, "fsh", 3)) shader->type = SHADER_FRAGMENT;
 	if(!strncmp(type, "gsh", 3)) shader->type = SHADER_GEOMETRY;
 	if(!strncmp(type, "csh", 3)) shader->type = SHADER_COMPUTE;
 
@@ -138,8 +138,8 @@ static int loadShader(Shader* shader) {
 
 	GLenum type;
 	switch(shader->type) {
-		case SHADER_FRAGMENT: type = GL_FRAGMENT_SHADER; break;
 		case SHADER_VERTEX:   type = GL_VERTEX_SHADER;   break;
+		case SHADER_FRAGMENT: type = GL_FRAGMENT_SHADER; break;
 		case SHADER_GEOMETRY: type = GL_GEOMETRY_SHADER; break;
 		case SHADER_COMPUTE:  type = GL_COMPUTE_SHADER;  break;
 	}

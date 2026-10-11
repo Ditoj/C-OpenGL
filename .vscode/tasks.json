@@ -16,7 +16,7 @@
 				"${cwd}/include/file/file.c",
 				"-lglfw3dll",
 				"-lopengl32",
-				"-o${cwd}/bin/${fileBasenameNoExtension}.exe"
+				"-o${cwd}/bin/program.exe"
 			],
 			"options": {
 				"cwd": "${fileDirname}"

@@ -2,8 +2,8 @@
 #define program_shader_h
 
 typedef enum {
-	SHADER_FRAGMENT,
 	SHADER_VERTEX,
+	SHADER_FRAGMENT,
 	SHADER_GEOMETRY,
 	SHADER_COMPUTE,
 	SHADER_ERROR

@@ -10,8 +10,7 @@ typedef struct {
 
 void initVBO(VBO* vbo);
 void freeVBO(VBO* vbo);
-void generateVBO(VBO* vbo);
-void updateVBO(VBO* vbo, const void* data, size_t size);
+void sendDataVBO(const void* data, size_t size);
 void setTargetVBO(VBO* vbo);
 void resetTargetVBO();
 
