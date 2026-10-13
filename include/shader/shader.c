@@ -1,6 +1,6 @@
 #include "shader/shader.h"
+#include "common/opengl_common.h"
 #include "file/file.h"
-#include "glad/glad.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,11 +11,11 @@ void initShaderProgram(ShaderProgram* program) {
 	for(int i = 0; i < 4; ++ i) program->attachedShaders[i] = NULL;
 }
 
+static void resetData(ShaderProgram* program);
+
 void freeShaderProgram(ShaderProgram* program) {
 	glDeleteProgram(program->index);
-
-	program->index = 0;
-	for(int i = 0; i < 4; ++ i) program->attachedShaders[i] = NULL;
+	resetData(program);
 }
 
 void freeAttachedShaders(ShaderProgram* program) {
@@ -168,4 +168,9 @@ static int loadShader(Shader* shader) {
 	}
 
 	return 1;
+}
+
+static void resetData(ShaderProgram* program) {
+	program->index = 0;
+	for(int i = 0; i < 4; ++ i) program->attachedShaders[i] = NULL;
 }

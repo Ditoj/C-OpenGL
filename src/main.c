@@ -1,7 +1,9 @@
 #include "common/common.h"
 #include "glad/glad.h"
 #include "glfw/glfw3.h"
-#include "vertex_buffer/vertex_buffer.h"
+#include "array/array.h"
+#include "buffers/vertex_buffer.h"
+#include "buffers/index_buffer.h"
 #include "vertex_array/vertex_array.h"
 #include "shader/shader.h"
 
@@ -17,9 +19,15 @@
 
 static const float vertexData[] = {
 	//x     y   r   g   b
-	-0.5, -0.5, 1., 0., 0.,
-	 0.5, -0.5, 0., 1., 0.,
-	 0.0,  0.5, 0., 0., .5
+	-0.5, -0.5, 1., 0., 0., //bottom-left
+	 0.5, -0.5, 0., 1., 0., //bottom-right
+	 0.5,  0.5, 0., 0., 1., //top-right
+	-0.5,  0.5, 1., 1., 1.  //top-left
+};
+
+static unsigned char indexData[] = {
+	0, 1, 2,
+	2, 3, 0
 };
 
 static void errorCallback(int error, const char* description);
@@ -34,7 +42,7 @@ int main() {
 	VBO vbo;
 	initVBO(&vbo);
 	setTargetVBO(&vbo);
-	sendDataVBO(vertexData, sizeof(vertexData));
+	sendDataVBO(&vbo, vertexData, ARRAY_SIZE(vertexData));
 
 	VAO vao;
 	initVAO(&vao);
@@ -42,6 +50,11 @@ int main() {
 	addAttributeVAO(&vao, 2, GL_FLOAT);
 	addAttributeVAO(&vao, 3, GL_FLOAT);
 	patchVAO(&vao);
+
+	IBO ibo;
+	initIBO(&ibo);
+	setTargetIBO(&ibo);
+	sendDataIBO(&ibo, indexData, ARRAY_SIZE(indexData), GL_UNSIGNED_BYTE);
 
 	ShaderProgram program;
 	initShaderProgram(&program);
@@ -63,7 +76,8 @@ int main() {
 
 	while(!glfwWindowShouldClose(window)) {
 		glClear(GL_COLOR_BUFFER_BIT);
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		//glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawElements(GL_TRIANGLES, ibo.count, ibo.type, NULL);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
@@ -71,6 +85,7 @@ int main() {
 
 	freeVBO(&vbo);
 	freeVAO(&vao);
+	freeIBO(&ibo);
 	freeShaderProgram(&program);
 
 	glfwDestroyWindow(window);

@@ -1,9 +1,8 @@
-#ifndef project_vao_h
-#define project_vao_h
+#ifndef opengl_vao_h
+#define opengl_vao_h
 
 #include "common/common.h"
-#include "glad/glad.h"
-#include "glfw/glfw3.h"
+#include "common/opengl_common.h"
 
 #define VAO_ATTRIBUTE_MAX 16
 
