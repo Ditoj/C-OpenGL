@@ -78,7 +78,6 @@ int linkShaderProgram(ShaderProgram* program, bool deleteShaders) {
 		glGetProgramInfoLog(program->index, 1024, NULL, errorLog);
 
 		fprintf(stderr, "%s", errorLog);
-
 		return 0;
 	}
 
@@ -118,16 +117,17 @@ void freeShader(Shader* shader) {
 
 static int loadShader(Shader* shader);
 
-int loadShaderFromFile(Shader* shader, const char* path) {
-	char type[256];
+int loadShaderFromFile(Shader* shader, SHADER_TYPE type, const char* path) {
+	/*char type[256];
 	getFileExtension(path, type);
 
 	if(!strncmp(type, "vsh", 3)) shader->type = SHADER_VERTEX;
 	if(!strncmp(type, "fsh", 3)) shader->type = SHADER_FRAGMENT;
 	if(!strncmp(type, "gsh", 3)) shader->type = SHADER_GEOMETRY;
-	if(!strncmp(type, "csh", 3)) shader->type = SHADER_COMPUTE;
+	if(!strncmp(type, "csh", 3)) shader->type = SHADER_COMPUTE;*/
 
 	shader->source = readFile(path);
+	shader->type   = type;
 
 	return loadShader(shader);
 }
@@ -164,7 +164,6 @@ static int loadShader(Shader* shader) {
 		glGetShaderInfoLog(shader->index, 1024, NULL, errorLog);
 
 		fprintf(stderr, "%s", errorLog);
-
 		return 0;
 	}
 

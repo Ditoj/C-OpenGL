@@ -10,7 +10,7 @@
 char* readFile(const char* path) {
 	FILE* file = fopen(path, "rb");
 	if(file == NULL) {
-		fprintf(stderr, "%s", "Failed to open file \"%s\".", path);
+		fprintf(stderr, "Failed to open file \"%s\".", path);
 		exit(EXIT_FILE_OPEN_FAIL);
 	}
 
@@ -20,13 +20,13 @@ char* readFile(const char* path) {
 
 	char* dest = malloc(fileSize + 1);
 	if(dest == NULL) {
-		fprintf(stderr, "%s", "Not enough memory to read file \"%s\".", path);
+		fprintf(stderr, "Not enough memory to read file \"%s\".", path);
 		exit(EXIT_ALLOCATION_FAIL);
 	}
 
 	size_t bytesRead = fread(dest, sizeof(char), fileSize, file);
 	if(bytesRead != fileSize) {
-		fprintf(stderr, "%s", "Failed to read file \"%s\".", path);
+		fprintf(stderr, "Failed to read file \"%s\".", path);
 		exit(EXIT_FILE_READ_FAIL);
 	}
 

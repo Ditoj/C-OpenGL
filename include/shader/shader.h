@@ -32,7 +32,7 @@ void resetTargetProgram();
 
 void initShader(Shader* shader);
 void freeShader(Shader* shader);
-int loadShaderFromFile(Shader* shader, const char* path);
+int loadShaderFromFile(Shader* shader, SHADER_TYPE type, const char* path);
 int loadShaderFromSource(Shader* shader, SHADER_TYPE type, char* source);
 
 #endif

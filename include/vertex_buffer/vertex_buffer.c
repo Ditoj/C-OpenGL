@@ -14,10 +14,6 @@ void freeVBO(VBO* vbo) {
 	vbo->data  = NULL;
 }
 
-void generateVBO(VBO* vbo) {
-	glGenBuffers(1, &vbo->index);
-}
-
 void sendDataVBO(const void* data, size_t size) {
 	glBufferData(GL_ARRAY_BUFFER, (GLsizeiptr) size, data, GL_STATIC_DRAW);
 }
