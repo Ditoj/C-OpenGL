@@ -36,7 +36,8 @@ void addAttributeVAO(VAO* vao, int count, GLenum type) {
 		.type  = type
 	};
 
-	vao->stride += typedSize;
+	vao->stride              += typedSize;
+	vao->totalAttributeCount += count;
 }
 
 void patchVAO(VAO* vao) {
@@ -60,8 +61,9 @@ void resetTargetVAO() {
 }
 
 static void resetData(VAO* vao) {
-	vao->offset         = 0;
-	vao->stride         = 0;
-	vao->index          = 0;
-	vao->attributeCount = 0;
+	vao->offset              = 0;
+	vao->stride              = 0;
+	vao->index               = 0;
+	vao->attributeCount      = 0;
+	vao->totalAttributeCount = 0;
 }

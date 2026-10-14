@@ -5,6 +5,7 @@
 #include "common/opengl_common.h"
 
 #define VAO_ATTRIBUTE_MAX 16
+#define VAO_AS_BUFFER(vao) (Buffer *) (vao)
 
 typedef struct {
 	size_t size;
@@ -14,10 +15,12 @@ typedef struct {
 
 typedef struct {
 	VertexAttributeLayout layout[VAO_ATTRIBUTE_MAX];
+	
 	size_t offset;
 	size_t stride;
 	unsigned int index;
 	unsigned int attributeCount;
+	unsigned int totalAttributeCount;
 } VAO;
 
 void initVAO(VAO* vao);

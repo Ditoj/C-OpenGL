@@ -6,6 +6,7 @@
 #include "buffers/index_buffer.h"
 #include "vertex_array/vertex_array.h"
 #include "shader/shader.h"
+#include "renderer/renderer.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -40,9 +41,7 @@ int main() {
 	initGLFW_GLAD(&window);
 
 	VBO vbo;
-	initVBO(&vbo);
-	setTargetVBO(&vbo);
-	sendDataVBO(&vbo, vertexData, ARRAY_SIZE(vertexData));
+	initVBO_FromData(&vbo, vertexData, sizeof(vertexData));
 
 	VAO vao;
 	initVAO(&vao);
@@ -52,32 +51,37 @@ int main() {
 	patchVAO(&vao);
 
 	IBO ibo;
-	initIBO(&ibo);
-	setTargetIBO(&ibo);
-	sendDataIBO(&ibo, indexData, ARRAY_SIZE(indexData), GL_UNSIGNED_BYTE);
+	initIBO_FromData(&ibo, indexData, sizeof(indexData), GL_UNSIGNED_BYTE);
 
-	ShaderProgram program;
-	initShaderProgram(&program);
+	Shader shader;
+	initShader(&shader);
 
-	Shader fragment;
-	Shader vertex;
-	initShader(&fragment);
-	initShader(&vertex);
-	loadShaderFromFile(&vertex, SHADER_VERTEX, "../shader/base/base.vsh");
-	loadShaderFromFile(&fragment, SHADER_FRAGMENT, "../shader/base/base.fsh");
+	ShdComp fragment;
+	ShdComp vertex;
+	initShdComp(&fragment);
+	initShdComp(&vertex);
+	loadShdCompFromFile(&vertex, SHADER_VERTEX, "../shader/base/base.vsh");
+	loadShdCompFromFile(&fragment, SHADER_FRAGMENT, "../shader/base/base.fsh");
 
-	attachShaderProgram(&program, &fragment);
-	attachShaderProgram(&program, &vertex);
+	attachComponent(&shader, &fragment);
+	attachComponent(&shader, &vertex);
 
-	linkShaderProgram(&program, true);
-	setTargetProgram(&program);
+	linkShader(&shader, true);
+	setTargetShader(&shader);
 
 	glClearColor(0.1f, 0.2f, 0.6f, 1.f);
 
+	Renderer renderer;
+	initRenderer(&renderer);
+	setVAO_Renderer(&renderer, &vao);
+	setVBO_Renderer(&renderer, &vbo);
+	setIBO_Renderer(&renderer, &ibo);
+	setShader_Renderer(&renderer, &shader);
+	setMode_Renderer(&renderer, GL_TRIANGLES);
+
 	while(!glfwWindowShouldClose(window)) {
-		glClear(GL_COLOR_BUFFER_BIT);
-		//glDrawArrays(GL_TRIANGLES, 0, 3);
-		glDrawElements(GL_TRIANGLES, ibo.count, ibo.type, NULL);
+		clearBuffers(GL_COLOR_BUFFER_BIT);
+		drawRenderer(&renderer);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
@@ -86,7 +90,8 @@ int main() {
 	freeVBO(&vbo);
 	freeVAO(&vao);
 	freeIBO(&ibo);
-	freeShaderProgram(&program);
+	freeShader(&shader);
+	freeRenderer(&renderer);
 
 	glfwDestroyWindow(window);
 	glfwTerminate();

@@ -6,31 +6,31 @@
 #include <stdlib.h>
 #include <string.h>
 
-void initShaderProgram(ShaderProgram* program) {
-	program->index = glCreateProgram();
-	for(int i = 0; i < 4; ++ i) program->attachedShaders[i] = NULL;
+void initShader(Shader* shader) {
+	shader->index = glCreateProgram();
+	for(int i = 0; i < 4; ++ i) shader->attachedComponents[i] = NULL;
 }
 
-static void resetData(ShaderProgram* program);
+static void resetData(Shader* shader);
 
-void freeShaderProgram(ShaderProgram* program) {
-	glDeleteProgram(program->index);
-	resetData(program);
+void freeShader(Shader* shader) {
+	glDeleteProgram(shader->index);
+	resetData(shader);
 }
 
-void freeAttachedShaders(ShaderProgram* program) {
-	if(program->attachedShaders[SHADER_VERTEX])   freeShader(program->attachedShaders[SHADER_VERTEX]);
-	if(program->attachedShaders[SHADER_FRAGMENT]) freeShader(program->attachedShaders[SHADER_FRAGMENT]);
-	if(program->attachedShaders[SHADER_GEOMETRY]) freeShader(program->attachedShaders[SHADER_GEOMETRY]);
-	if(program->attachedShaders[SHADER_COMPUTE])  freeShader(program->attachedShaders[SHADER_COMPUTE]);
+void freeComponents(Shader* shader) {
+	if(shader->attachedComponents[SHADER_VERTEX])   freeShdComp(shader->attachedComponents[SHADER_VERTEX]);
+	if(shader->attachedComponents[SHADER_FRAGMENT]) freeShdComp(shader->attachedComponents[SHADER_FRAGMENT]);
+	if(shader->attachedComponents[SHADER_GEOMETRY]) freeShdComp(shader->attachedComponents[SHADER_GEOMETRY]);
+	if(shader->attachedComponents[SHADER_COMPUTE])  freeShdComp(shader->attachedComponents[SHADER_COMPUTE]);
 }
 
-void attachShaderProgram(ShaderProgram* program, Shader* shader) {
+void attachComponent(Shader* shader, ShdComp* component) {
 	int mask = 0;
-	switch(shader->type) {
+	switch(component->type) {
 		case SHADER_VERTEX: {
-			if(!program->attachedShaders[SHADER_VERTEX]) {
-				program->attachedShaders[SHADER_VERTEX] = shader;
+			if(!shader->attachedComponents[SHADER_VERTEX]) {
+				shader->attachedComponents[SHADER_VERTEX] = component;
 				break;
 			}
 
@@ -38,8 +38,8 @@ void attachShaderProgram(ShaderProgram* program, Shader* shader) {
 		}
 
 		case SHADER_FRAGMENT: {
-			if(!program->attachedShaders[SHADER_FRAGMENT]) {
-				program->attachedShaders[SHADER_FRAGMENT] = shader;
+			if(!shader->attachedComponents[SHADER_FRAGMENT]) {
+				shader->attachedComponents[SHADER_FRAGMENT] = component;
 				break;
 			}
 
@@ -47,8 +47,8 @@ void attachShaderProgram(ShaderProgram* program, Shader* shader) {
 		}
 
 		case SHADER_GEOMETRY: {
-			if(!program->attachedShaders[SHADER_GEOMETRY]) {
-				program->attachedShaders[SHADER_GEOMETRY] = shader;
+			if(!shader->attachedComponents[SHADER_GEOMETRY]) {
+				shader->attachedComponents[SHADER_GEOMETRY] = component;
 				break;
 			}
 
@@ -56,8 +56,8 @@ void attachShaderProgram(ShaderProgram* program, Shader* shader) {
 		}
 
 		case SHADER_COMPUTE: {
-			if(!program->attachedShaders[SHADER_COMPUTE]) {
-				program->attachedShaders[SHADER_COMPUTE] = shader;
+			if(!shader->attachedComponents[SHADER_COMPUTE]) {
+				shader->attachedComponents[SHADER_COMPUTE] = component;
 				break;
 			}
 
@@ -65,17 +65,17 @@ void attachShaderProgram(ShaderProgram* program, Shader* shader) {
 		}
 	}
 
-	glAttachShader(program->index, shader->index);
+	glAttachShader(shader->index, component->index);
 }
 
-int linkShaderProgram(ShaderProgram* program, bool deleteShaders) {
-	glLinkProgram(program->index);
+int linkShader(Shader* shader, bool deleteShaders) {
+	glLinkProgram(shader->index);
 
 	GLint success;
-	glGetProgramiv(program->index, GL_LINK_STATUS, &success);
+	glGetProgramiv(shader->index, GL_LINK_STATUS, &success);
 	if(!success) {
 		char errorLog[1024];
-		glGetProgramInfoLog(program->index, 1024, NULL, errorLog);
+		glGetProgramInfoLog(shader->index, 1024, NULL, errorLog);
 
 		fprintf(stderr, "%s", errorLog);
 		return 0;
@@ -83,10 +83,10 @@ int linkShaderProgram(ShaderProgram* program, bool deleteShaders) {
 
 	if(deleteShaders) {
 		for(int i = 0; i < 4; ++ i) {
-			if(program->attachedShaders[i]) {
-				glDetachShader(program->index, program->attachedShaders[i]->index);
-				freeShader(program->attachedShaders[i]);
-				program->attachedShaders[i] = NULL;
+			if(shader->attachedComponents[i]) {
+				glDetachShader(shader->index, shader->attachedComponents[i]->index);
+				freeShdComp(shader->attachedComponents[i]);
+				shader->attachedComponents[i] = NULL;
 			}
 		}
 	}
@@ -94,30 +94,30 @@ int linkShaderProgram(ShaderProgram* program, bool deleteShaders) {
 	return 1;
 }
 
-void setTargetProgram(ShaderProgram* program) {
-	glUseProgram(program->index);
+void setTargetShader(Shader* shader) {
+	glUseProgram(shader->index);
 }
 
-void resetTargetProgram() {
+void resetTargetShader() {
 	glUseProgram(0);
 }
 
-void initShader(Shader* shader) {
-	shader->index  = 0;
-	shader->type   = SHADER_ERROR;
-	shader->source = NULL;
+void initShdComp(ShdComp* component) {
+	component->index  = 0;
+	component->type   = SHADER_ERROR;
+	component->source = NULL;
 }
 
-void freeShader(Shader* shader) {
-	free(shader->source);
-	glDeleteShader(shader->index);
+void freeShdComp(ShdComp* component) {
+	free(component->source);
+	glDeleteShader(component->index);
 
-	initShader(shader);
+	initShdComp(component);
 }
 
-static int loadShader(Shader* shader);
+static int loadShdComp(ShdComp* component);
 
-int loadShaderFromFile(Shader* shader, SHADER_TYPE type, const char* path) {
+int loadShdCompFromFile(ShdComp* component, SHADER_TYPE type, const char* path) {
 	/*char type[256];
 	getFileExtension(path, type);
 
@@ -126,24 +126,24 @@ int loadShaderFromFile(Shader* shader, SHADER_TYPE type, const char* path) {
 	if(!strncmp(type, "gsh", 3)) shader->type = SHADER_GEOMETRY;
 	if(!strncmp(type, "csh", 3)) shader->type = SHADER_COMPUTE;*/
 
-	shader->source = readFile(path);
-	shader->type   = type;
+	component->source = readFile(path);
+	component->type   = type;
 
-	return loadShader(shader);
+	return loadShdComp(component);
 }
 
-int loadShaderFromSource(Shader* shader, SHADER_TYPE type, char* source) {
-	shader->type   = type;
-	shader->source = strdup(source);
+int loadShdCompFromSource(ShdComp* component, SHADER_TYPE type, char* source) {
+	component->type   = type;
+	component->source = strdup(source);
 
-	return loadShader(shader);
+	return loadShdComp(component);
 }
 
-static int loadShader(Shader* shader) {
-	if(shader->type == SHADER_ERROR) return 0;
+static int loadShdComp(ShdComp* component) {
+	if(component->type == SHADER_ERROR) return 0;
 
 	GLenum type;
-	switch(shader->type) {
+	switch(component->type) {
 		case SHADER_VERTEX:   type = GL_VERTEX_SHADER;   break;
 		case SHADER_FRAGMENT: type = GL_FRAGMENT_SHADER; break;
 		case SHADER_GEOMETRY: type = GL_GEOMETRY_SHADER; break;
@@ -152,16 +152,16 @@ static int loadShader(Shader* shader) {
 		default: return 0;
 	}
 
-	shader->index = glCreateShader(type);
-	const GLchar* source = shader->source;
-	glShaderSource(shader->index, 1, &source, NULL);
-	glCompileShader(shader->index);
+	component->index = glCreateShader(type);
+	const GLchar* source = component->source;
+	glShaderSource(component->index, 1, &source, NULL);
+	glCompileShader(component->index);
 
 	GLint success;
-	glGetShaderiv(shader->index, GL_COMPILE_STATUS, &success);
+	glGetShaderiv(component->index, GL_COMPILE_STATUS, &success);
 	if(!success) {
 		char errorLog[1024];
-		glGetShaderInfoLog(shader->index, 1024, NULL, errorLog);
+		glGetShaderInfoLog(component->index, 1024, NULL, errorLog);
 
 		fprintf(stderr, "%s", errorLog);
 		return 0;
@@ -170,7 +170,7 @@ static int loadShader(Shader* shader) {
 	return 1;
 }
 
-static void resetData(ShaderProgram* program) {
-	program->index = 0;
-	for(int i = 0; i < 4; ++ i) program->attachedShaders[i] = NULL;
+static void resetData(Shader* shader) {
+	shader->index = 0;
+	for(int i = 0; i < 4; ++ i) shader->attachedComponents[i] = NULL;
 }

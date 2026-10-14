@@ -10,6 +10,12 @@ void initIBO(IBO* ibo) {
 	initBuffer(IBO_BUFFER_PTR(ibo));
 }
 
+void initIBO_FromData(IBO* ibo, const void* data, size_t size, GLenum type) {
+	initIBO(ibo);
+	setTargetIBO(ibo);
+	sendDataIBO(ibo, data, size, type);
+}
+
 void freeIBO(IBO* ibo) {
 	freeBuffer(IBO_BUFFER_PTR(ibo));
 	resetData(ibo);

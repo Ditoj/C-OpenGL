@@ -15,24 +15,24 @@ typedef struct {
 	SHADER_TYPE type;
 	char* source; //owns the string
 	unsigned int index;
-} Shader;
+} ShdComp; //Shader Component
 
 typedef struct {
 	unsigned int index;
-	Shader* attachedShaders[4];
-} ShaderProgram;
-
-void initShaderProgram(ShaderProgram* program);
-void freeShaderProgram(ShaderProgram* program);
-void freeAttachedShaders(ShaderProgram* program);
-void attachShaderProgram(ShaderProgram* program, Shader* shader);
-int linkShaderProgram(ShaderProgram* program, bool deleteShaders);
-void setTargetProgram(ShaderProgram* program);
-void resetTargetProgram();
+	ShdComp* attachedComponents[4];
+} Shader;
 
 void initShader(Shader* shader);
 void freeShader(Shader* shader);
-int loadShaderFromFile(Shader* shader, SHADER_TYPE type, const char* path);
-int loadShaderFromSource(Shader* shader, SHADER_TYPE type, char* source);
+void freeComponents(Shader* shader);
+void attachComponent(Shader* shader, ShdComp* component);
+int linkShader(Shader* shader, bool deleteComponents);
+void setTargetShader(Shader* shader);
+void resetTargetShader();
+
+void initShdComp(ShdComp* component);
+void freeShdComp(ShdComp* component);
+int loadShdCompFromFile(ShdComp* component, SHADER_TYPE type, const char* path);
+int loadShdCompFromSource(ShdComp* component, SHADER_TYPE type, char* source);
 
 #endif
