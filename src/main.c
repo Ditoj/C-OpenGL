@@ -19,6 +19,8 @@
 #define EXIT_GLFW_LOAD_ERROR 1
 #define EXIT_GLAD_LOAD_ERROR 2
 
+#define PROJECT_ROOT_PATH "../../"
+
 static const float vertexData[] = {
 	//x    y  r   g   b   u   v
 	-.5, -.5, 1., 0., 0., 0., 0., //bottom-left
@@ -62,8 +64,8 @@ int main() {
 	ShdComp vertex;
 	initShdComp(&fragment);
 	initShdComp(&vertex);
-	loadShdCompFromFile(&vertex, SHADER_VERTEX, "../shader/base/base.vsh");
-	loadShdCompFromFile(&fragment, SHADER_FRAGMENT, "../shader/base/base.fsh");
+	loadShdCompFromFile(&vertex, SHADER_VERTEX, PROJECT_ROOT_PATH "shader/base/base.vsh");
+	loadShdCompFromFile(&fragment, SHADER_FRAGMENT, PROJECT_ROOT_PATH "shader/base/base.fsh");
 
 	attachComponent(&shader, &fragment);
 	attachComponent(&shader, &vertex);
@@ -81,7 +83,7 @@ int main() {
 	setMode_Renderer(&renderer, GL_TRIANGLES);
 
 	Texture2D texture;
-	initTexture2D_fromImage(&texture, "../img/container.png", 0);
+	initTexture2D_fromImage(&texture, PROJECT_ROOT_PATH "img/container.png", 0);
 
 	setTargetShader(&shader);
 	setUniform1i(&shader, "u_texture", 0);

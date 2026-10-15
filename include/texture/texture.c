@@ -18,7 +18,7 @@ int initTexture2D_fromImage(Texture2D* texture, const char* path, int slot) {
 	setTextureParameters2D();
 	setTargetTexture2D(texture, 0);
 
-	return loadImageTexture2D(texture, "../img/container.png");
+	return loadImageTexture2D(texture, path);
 }
 
 void freeTexture2D(Texture2D* texture) {
