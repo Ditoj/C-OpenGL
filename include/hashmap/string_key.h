@@ -15,6 +15,8 @@ StringKey* copyString(const char* chars, int length);
 //takes ownership of the given string
 StringKey* takeString(char* chars, int length);
 
+/*this is a loaded firearm that will be triggered if not used with string literals, as
+it does not make the StringKey take ownership of the given string. USE THIS CAREFULLY*/
 void buildString(StringKey* string, const char* chars);
 
 #endif

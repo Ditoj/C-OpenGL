@@ -1,5 +1,5 @@
-#ifndef tuph_memory_h
-#define tuph_memory_h
+#ifndef opengl_memory_h
+#define opengl_memory_h
 
 #include "common/common.h"
 

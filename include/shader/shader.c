@@ -68,6 +68,8 @@ void attachComponent(Shader* shader, ShdComp* component) {
 
 			return; //shader already attached
 		}
+
+		default: return; //unreachable
 	}
 
 	glAttachShader(shader->index, component->index);

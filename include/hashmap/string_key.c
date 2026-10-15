@@ -29,7 +29,7 @@ void buildString(StringKey* string, const char* chars) {
 }
 
 static StringKey* allocateString(const char* chars, int length, uint32_t hash) {
-	StringKey* string = (StringKey *) reallocate(NULL, length);
+	StringKey* string = ALLOCATE(StringKey, 1);
 	string->length    = length;
 	string->chars     = chars;
 	string->hash      = hash;
