@@ -12,6 +12,7 @@ void initShader(Shader* shader) {
 }
 
 static void resetData(Shader* shader);
+static int getUniformLocation(Shader* shader, const char* name);
 
 void freeShader(Shader* shader) {
 	glDeleteProgram(shader->index);
@@ -102,6 +103,38 @@ void resetTargetShader() {
 	glUseProgram(0);
 }
 
+void setUniform1i(Shader* shader, const char* name, int value) {
+	glUniform1i(getUniformLocation(shader, name), value);
+}
+
+void setUniform2i(Shader* shader, const char* name, int value1, int value2) {
+	glUniform2i(getUniformLocation(shader, name), value1, value2);
+}
+
+void setUniform3i(Shader* shader, const char* name, int value1, int value2, int value3) {
+	glUniform3i(getUniformLocation(shader, name), value1, value2, value3);
+}
+
+void setUniform4i(Shader* shader, const char* name, int value1, int value2, int value3, int value4) {
+	glUniform4i(getUniformLocation(shader, name), value1, value2, value3, value4);
+}
+
+void setUniform1f(Shader* shader, const char* name, float value) {
+	glUniform1f(getUniformLocation(shader, name), value);
+}
+
+void setUniform2f(Shader* shader, const char* name, float value1, float value2) {
+	glUniform2f(getUniformLocation(shader, name), value1, value2);
+}
+
+void setUniform3f(Shader* shader, const char* name, float value1, float value2, float value3) {
+	glUniform3f(getUniformLocation(shader, name), value1, value2, value3);
+}
+
+void setUniform4f(Shader* shader, const char* name, float value1, float value2, float value3, float value4) {
+	glUniform4f(getUniformLocation(shader, name), value1, value2, value3, value4);
+}
+
 void initShdComp(ShdComp* component) {
 	component->index  = 0;
 	component->type   = SHADER_ERROR;
@@ -173,4 +206,8 @@ static int loadShdComp(ShdComp* component) {
 static void resetData(Shader* shader) {
 	shader->index = 0;
 	for(int i = 0; i < 4; ++ i) shader->attachedComponents[i] = NULL;
+}
+
+static int getUniformLocation(Shader* shader, const char* name) {
+	return glGetUniformLocation(shader->index, name);
 }

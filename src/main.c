@@ -7,6 +7,7 @@
 #include "vertex_array/vertex_array.h"
 #include "shader/shader.h"
 #include "renderer/renderer.h"
+#include "texture/texture.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,11 +20,11 @@
 #define EXIT_GLAD_LOAD_ERROR 2
 
 static const float vertexData[] = {
-	//x     y   r   g   b
-	-0.5, -0.5, 1., 0., 0., //bottom-left
-	 0.5, -0.5, 0., 1., 0., //bottom-right
-	 0.5,  0.5, 0., 0., 1., //top-right
-	-0.5,  0.5, 1., 1., 1.  //top-left
+	//x    y  r   g   b   u   v
+	-.5, -.5, 1., 0., 0., 0., 0., //bottom-left
+	 .5, -.5, 0., 1., 0., 1., 0., //bottom-right
+	 .5,  .5, 0., 0., 1., 1., 1., //top-right
+	-.5,  .5, 1., 1., 1., 0., 1.  //top-left
 };
 
 static unsigned char indexData[] = {
@@ -48,6 +49,7 @@ int main() {
 	setTargetVAO(&vao);
 	addAttributeVAO(&vao, 2, GL_FLOAT);
 	addAttributeVAO(&vao, 3, GL_FLOAT);
+	addAttributeVAO(&vao, 2, GL_FLOAT);
 	patchVAO(&vao);
 
 	IBO ibo;
@@ -67,7 +69,6 @@ int main() {
 	attachComponent(&shader, &vertex);
 
 	linkShader(&shader, true);
-	setTargetShader(&shader);
 
 	glClearColor(0.1f, 0.2f, 0.6f, 1.f);
 
@@ -78,6 +79,12 @@ int main() {
 	setIBO_Renderer(&renderer, &ibo);
 	setShader_Renderer(&renderer, &shader);
 	setMode_Renderer(&renderer, GL_TRIANGLES);
+
+	Texture2D texture;
+	initTexture2D_fromImage(&texture, "../img/container.png", 0);
+
+	setTargetShader(&shader);
+	setUniform1i(&shader, "u_texture", 0);
 
 	while(!glfwWindowShouldClose(window)) {
 		clearBuffers(GL_COLOR_BUFFER_BIT);
@@ -92,6 +99,7 @@ int main() {
 	freeIBO(&ibo);
 	freeShader(&shader);
 	freeRenderer(&renderer);
+	freeTexture2D(&texture);
 
 	glfwDestroyWindow(window);
 	glfwTerminate();
