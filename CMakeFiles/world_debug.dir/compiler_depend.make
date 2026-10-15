@@ -81,6 +81,80 @@ CMakeFiles/world_debug.dir/include/file/file.c.obj: include/file/file.c \
   C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/mm_malloc.h \
   C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/syslimits.h
 
+CMakeFiles/world_debug.dir/include/hashmap/hashmap.c.obj: include/hashmap/hashmap.c \
+  include/common/common.h \
+  include/hashmap/hashmap.h \
+  include/hashmap/string_key.h \
+  include/hashmap/value.h \
+  include/memory/memory.h \
+  C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_mac.h \
+  C:/msys64/ucrt64/include/_mingw_secapi.h \
+  C:/msys64/ucrt64/include/corecrt.h \
+  C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/crtdefs.h \
+  C:/msys64/ucrt64/include/errno.h \
+  C:/msys64/ucrt64/include/limits.h \
+  C:/msys64/ucrt64/include/malloc.h \
+  C:/msys64/ucrt64/include/sdks/_mingw_ddk.h \
+  C:/msys64/ucrt64/include/sec_api/stdlib_s.h \
+  C:/msys64/ucrt64/include/sec_api/string_s.h \
+  C:/msys64/ucrt64/include/stddef.h \
+  C:/msys64/ucrt64/include/stdint.h \
+  C:/msys64/ucrt64/include/stdlib.h \
+  C:/msys64/ucrt64/include/string.h \
+  C:/msys64/ucrt64/include/vadefs.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/limits.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/mm_malloc.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdbool.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stddef.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdint.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/syslimits.h
+
+CMakeFiles/world_debug.dir/include/hashmap/string_key.c.obj: include/hashmap/string_key.c \
+  include/common/common.h \
+  include/hashmap/string_key.h \
+  include/memory/memory.h \
+  C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_mac.h \
+  C:/msys64/ucrt64/include/_mingw_secapi.h \
+  C:/msys64/ucrt64/include/corecrt.h \
+  C:/msys64/ucrt64/include/crtdefs.h \
+  C:/msys64/ucrt64/include/sdks/_mingw_ddk.h \
+  C:/msys64/ucrt64/include/sec_api/string_s.h \
+  C:/msys64/ucrt64/include/stddef.h \
+  C:/msys64/ucrt64/include/stdint.h \
+  C:/msys64/ucrt64/include/string.h \
+  C:/msys64/ucrt64/include/vadefs.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdbool.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stddef.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdint.h
+
+CMakeFiles/world_debug.dir/include/memory/memory.c.obj: include/memory/memory.c \
+  include/common/common.h \
+  include/memory/memory.h \
+  C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_mac.h \
+  C:/msys64/ucrt64/include/_mingw_secapi.h \
+  C:/msys64/ucrt64/include/corecrt.h \
+  C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/crtdefs.h \
+  C:/msys64/ucrt64/include/errno.h \
+  C:/msys64/ucrt64/include/limits.h \
+  C:/msys64/ucrt64/include/malloc.h \
+  C:/msys64/ucrt64/include/sdks/_mingw_ddk.h \
+  C:/msys64/ucrt64/include/sec_api/stdlib_s.h \
+  C:/msys64/ucrt64/include/stddef.h \
+  C:/msys64/ucrt64/include/stdint.h \
+  C:/msys64/ucrt64/include/stdlib.h \
+  C:/msys64/ucrt64/include/vadefs.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/limits.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/mm_malloc.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdbool.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stddef.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdint.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/syslimits.h
+
 CMakeFiles/world_debug.dir/include/renderer/renderer.c.obj: include/renderer/renderer.c \
   include/KHR/khrplatform.h \
   include/buffers/buffer_base.h \
@@ -90,6 +164,9 @@ CMakeFiles/world_debug.dir/include/renderer/renderer.c.obj: include/renderer/ren
   include/common/opengl_common.h \
   include/glad/glad.h \
   include/glfw/glfw3.h \
+  include/hashmap/hashmap.h \
+  include/hashmap/string_key.h \
+  include/hashmap/value.h \
   include/renderer/renderer.h \
   include/shader/shader.h \
   include/vertex_array/vertex_array.h \
@@ -113,6 +190,10 @@ CMakeFiles/world_debug.dir/include/shader/shader.c.obj: include/shader/shader.c 
   include/file/file.h \
   include/glad/glad.h \
   include/glfw/glfw3.h \
+  include/hashmap/hashmap.h \
+  include/hashmap/string_key.h \
+  include/hashmap/value.h \
+  include/memory/memory.h \
   include/shader/shader.h \
   C:/msys64/ucrt64/include/_mingw.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
@@ -498,6 +579,9 @@ CMakeFiles/world_debug.dir/src/main.c.obj: src/main.c \
   include/common/opengl_common.h \
   include/glad/glad.h \
   include/glfw/glfw3.h \
+  include/hashmap/hashmap.h \
+  include/hashmap/string_key.h \
+  include/hashmap/value.h \
   include/renderer/renderer.h \
   include/shader/shader.h \
   include/texture/texture.h \
@@ -620,13 +704,13 @@ C:/msys64/ucrt64/include/fibersapi.h:
 
 C:/msys64/ucrt64/include/vadefs.h:
 
+C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/xsavesintrin.h:
+
+include/memory/memory.c:
+
 C:/msys64/ucrt64/include/psdk_inc/_socket_types.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stddef.h:
-
-C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/pkuintrin.h:
-
-include/vertex_array/vertex_array.c:
 
 C:/msys64/ucrt64/include/libloaderapi.h:
 
@@ -634,11 +718,19 @@ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdint.h:
 
 C:/msys64/ucrt64/include/sec_api/string_s.h:
 
+C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/clwbintrin.h:
+
+C:/msys64/ucrt64/include/unknwnbase.h:
+
+include/hashmap/hashmap.c:
+
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/prfchiintrin.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/avx5124fmapsintrin.h:
 
 include/buffers/index_buffer.c:
+
+include/hashmap/hashmap.h:
 
 include/buffers/index_buffer.h:
 
@@ -696,13 +788,21 @@ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdbool.h:
 
 include/common/common.h:
 
-include/shader/shader.h:
-
-include/vertex_array/vertex_array.h:
-
 include/shader/shader.c:
 
-C:/msys64/ucrt64/include/_timeval.h:
+include/hashmap/string_key.h:
+
+include/hashmap/value.h:
+
+C:/msys64/ucrt64/include/timeapi.h:
+
+include/memory/memory.h:
+
+include/shader/shader.h:
+
+include/hashmap/string_key.c:
+
+include/vertex_array/vertex_array.h:
 
 C:/msys64/ucrt64/include/mmeapi.h:
 
@@ -716,6 +816,10 @@ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/amxint8intrin.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdarg.h:
 
+C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/pkuintrin.h:
+
+include/vertex_array/vertex_array.c:
+
 src/glad.c:
 
 C:/msys64/ucrt64/include/utilapiset.h:
@@ -723,6 +827,8 @@ C:/msys64/ucrt64/include/utilapiset.h:
 C:/msys64/ucrt64/include/_bsd_types.h:
 
 C:/msys64/ucrt64/include/_mingw_unicode.h:
+
+C:/msys64/ucrt64/include/_timeval.h:
 
 C:/msys64/ucrt64/include/consoleapi3.h:
 
@@ -926,8 +1032,6 @@ C:/msys64/ucrt64/include/threadpoolapiset.h:
 
 C:/msys64/ucrt64/include/threadpoollegacyapiset.h:
 
-C:/msys64/ucrt64/include/timeapi.h:
-
 C:/msys64/ucrt64/include/timezoneapi.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/avx512vldqintrin.h:
@@ -935,10 +1039,6 @@ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/avx512vldqintrin.h:
 C:/msys64/ucrt64/include/tvout.h:
 
 C:/msys64/ucrt64/include/unknwn.h:
-
-C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/clwbintrin.h:
-
-C:/msys64/ucrt64/include/unknwnbase.h:
 
 C:/msys64/ucrt64/include/urlmon.h:
 
@@ -1135,8 +1235,6 @@ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/xopintrin.h:
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/xsavecintrin.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/xsaveoptintrin.h:
-
-C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/xsavesintrin.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/xtestintrin.h:
 

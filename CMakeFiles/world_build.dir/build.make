@@ -221,6 +221,51 @@ CMakeFiles/world_build.dir/include/file/file.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/world_build.dir/include/file/file.c.s"
 	C:\msys64\ucrt64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\C OpenGL\include\file\file.c" -o CMakeFiles\world_build.dir\include\file\file.c.s
 
+CMakeFiles/world_build.dir/include/memory/memory.c.obj: CMakeFiles/world_build.dir/flags.make
+CMakeFiles/world_build.dir/include/memory/memory.c.obj: CMakeFiles/world_build.dir/includes_C.rsp
+CMakeFiles/world_build.dir/include/memory/memory.c.obj: include/memory/memory.c
+CMakeFiles/world_build.dir/include/memory/memory.c.obj: CMakeFiles/world_build.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\C OpenGL\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/world_build.dir/include/memory/memory.c.obj"
+	C:\msys64\ucrt64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/world_build.dir/include/memory/memory.c.obj -MF CMakeFiles\world_build.dir\include\memory\memory.c.obj.d -o CMakeFiles\world_build.dir\include\memory\memory.c.obj -c "C:\C OpenGL\include\memory\memory.c"
+
+CMakeFiles/world_build.dir/include/memory/memory.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/world_build.dir/include/memory/memory.c.i"
+	C:\msys64\ucrt64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\C OpenGL\include\memory\memory.c" > CMakeFiles\world_build.dir\include\memory\memory.c.i
+
+CMakeFiles/world_build.dir/include/memory/memory.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/world_build.dir/include/memory/memory.c.s"
+	C:\msys64\ucrt64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\C OpenGL\include\memory\memory.c" -o CMakeFiles\world_build.dir\include\memory\memory.c.s
+
+CMakeFiles/world_build.dir/include/hashmap/hashmap.c.obj: CMakeFiles/world_build.dir/flags.make
+CMakeFiles/world_build.dir/include/hashmap/hashmap.c.obj: CMakeFiles/world_build.dir/includes_C.rsp
+CMakeFiles/world_build.dir/include/hashmap/hashmap.c.obj: include/hashmap/hashmap.c
+CMakeFiles/world_build.dir/include/hashmap/hashmap.c.obj: CMakeFiles/world_build.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\C OpenGL\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/world_build.dir/include/hashmap/hashmap.c.obj"
+	C:\msys64\ucrt64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/world_build.dir/include/hashmap/hashmap.c.obj -MF CMakeFiles\world_build.dir\include\hashmap\hashmap.c.obj.d -o CMakeFiles\world_build.dir\include\hashmap\hashmap.c.obj -c "C:\C OpenGL\include\hashmap\hashmap.c"
+
+CMakeFiles/world_build.dir/include/hashmap/hashmap.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/world_build.dir/include/hashmap/hashmap.c.i"
+	C:\msys64\ucrt64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\C OpenGL\include\hashmap\hashmap.c" > CMakeFiles\world_build.dir\include\hashmap\hashmap.c.i
+
+CMakeFiles/world_build.dir/include/hashmap/hashmap.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/world_build.dir/include/hashmap/hashmap.c.s"
+	C:\msys64\ucrt64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\C OpenGL\include\hashmap\hashmap.c" -o CMakeFiles\world_build.dir\include\hashmap\hashmap.c.s
+
+CMakeFiles/world_build.dir/include/hashmap/string_key.c.obj: CMakeFiles/world_build.dir/flags.make
+CMakeFiles/world_build.dir/include/hashmap/string_key.c.obj: CMakeFiles/world_build.dir/includes_C.rsp
+CMakeFiles/world_build.dir/include/hashmap/string_key.c.obj: include/hashmap/string_key.c
+CMakeFiles/world_build.dir/include/hashmap/string_key.c.obj: CMakeFiles/world_build.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\C OpenGL\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/world_build.dir/include/hashmap/string_key.c.obj"
+	C:\msys64\ucrt64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/world_build.dir/include/hashmap/string_key.c.obj -MF CMakeFiles\world_build.dir\include\hashmap\string_key.c.obj.d -o CMakeFiles\world_build.dir\include\hashmap\string_key.c.obj -c "C:\C OpenGL\include\hashmap\string_key.c"
+
+CMakeFiles/world_build.dir/include/hashmap/string_key.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/world_build.dir/include/hashmap/string_key.c.i"
+	C:\msys64\ucrt64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\C OpenGL\include\hashmap\string_key.c" > CMakeFiles\world_build.dir\include\hashmap\string_key.c.i
+
+CMakeFiles/world_build.dir/include/hashmap/string_key.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/world_build.dir/include/hashmap/string_key.c.s"
+	C:\msys64\ucrt64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\C OpenGL\include\hashmap\string_key.c" -o CMakeFiles\world_build.dir\include\hashmap\string_key.c.s
+
 # Object files for target world_build
 world_build_OBJECTS = \
 "CMakeFiles/world_build.dir/src/glad.c.obj" \
@@ -232,7 +277,10 @@ world_build_OBJECTS = \
 "CMakeFiles/world_build.dir/include/buffers/index_buffer.c.obj" \
 "CMakeFiles/world_build.dir/include/vertex_array/vertex_array.c.obj" \
 "CMakeFiles/world_build.dir/include/texture/texture.c.obj" \
-"CMakeFiles/world_build.dir/include/file/file.c.obj"
+"CMakeFiles/world_build.dir/include/file/file.c.obj" \
+"CMakeFiles/world_build.dir/include/memory/memory.c.obj" \
+"CMakeFiles/world_build.dir/include/hashmap/hashmap.c.obj" \
+"CMakeFiles/world_build.dir/include/hashmap/string_key.c.obj"
 
 # External object files for target world_build
 world_build_EXTERNAL_OBJECTS =
@@ -247,12 +295,15 @@ bin/build/world_build.exe: CMakeFiles/world_build.dir/include/buffers/index_buff
 bin/build/world_build.exe: CMakeFiles/world_build.dir/include/vertex_array/vertex_array.c.obj
 bin/build/world_build.exe: CMakeFiles/world_build.dir/include/texture/texture.c.obj
 bin/build/world_build.exe: CMakeFiles/world_build.dir/include/file/file.c.obj
+bin/build/world_build.exe: CMakeFiles/world_build.dir/include/memory/memory.c.obj
+bin/build/world_build.exe: CMakeFiles/world_build.dir/include/hashmap/hashmap.c.obj
+bin/build/world_build.exe: CMakeFiles/world_build.dir/include/hashmap/string_key.c.obj
 bin/build/world_build.exe: CMakeFiles/world_build.dir/build.make
 bin/build/world_build.exe: lib/libglfw3dll.a
 bin/build/world_build.exe: CMakeFiles/world_build.dir/linkLibs.rsp
 bin/build/world_build.exe: CMakeFiles/world_build.dir/objects1.rsp
 bin/build/world_build.exe: CMakeFiles/world_build.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="C:\C OpenGL\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Linking C executable bin\build\world_build.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="C:\C OpenGL\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Linking C executable bin\build\world_build.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\world_build.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

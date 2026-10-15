@@ -86,7 +86,10 @@ int main() {
 	initTexture2D_fromImage(&texture, PROJECT_ROOT_PATH "img/container.png", 0);
 
 	setTargetShader(&shader);
-	setUniform1i(&shader, "u_texture", 0);
+
+	Uniform textureUniform;
+	uniformFromString(&textureUniform, "u_texture");
+	setUniform1i(&shader, &textureUniform, 0);
 
 	while(!glfwWindowShouldClose(window)) {
 		clearBuffers(GL_COLOR_BUFFER_BIT);

@@ -20,6 +20,9 @@ set(MY_SOURCE_FILES
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/vertex_array/vertex_array.c"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/texture/texture.c"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/file/file.c"
+	"${CMAKE_CURRENT_SOURCE_DIR}/include/memory/memory.c"
+	"${CMAKE_CURRENT_SOURCE_DIR}/include/hashmap/hashmap.c"
+	"${CMAKE_CURRENT_SOURCE_DIR}/include/hashmap/string_key.c"
 )
 
 add_executable(world_build ${MY_SOURCE_FILES})

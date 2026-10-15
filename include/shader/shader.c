@@ -1,20 +1,24 @@
 #include "shader/shader.h"
 #include "common/opengl_common.h"
 #include "file/file.h"
+#include "memory/memory.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+static void resetData(Shader* shader);
+static int getUniformLocation(Shader* shader, StringKey* name);
+
 void initShader(Shader* shader) {
-	shader->index = glCreateProgram();
 	for(int i = 0; i < 4; ++ i) shader->attachedComponents[i] = NULL;
+	shader->uniformCache = ALLOCATE(HashMap, 1);
+	initHashMap(shader->uniformCache);
+	shader->index = glCreateProgram();
 }
 
-static void resetData(Shader* shader);
-static int getUniformLocation(Shader* shader, const char* name);
-
 void freeShader(Shader* shader) {
+	freeHashMap(shader->uniformCache);
 	glDeleteProgram(shader->index);
 	resetData(shader);
 }
@@ -103,36 +107,40 @@ void resetTargetShader() {
 	glUseProgram(0);
 }
 
-void setUniform1i(Shader* shader, const char* name, int value) {
-	glUniform1i(getUniformLocation(shader, name), value);
+void uniformFromString(Uniform* uniform, const char* string) {
+	buildString(uniform, string);
 }
 
-void setUniform2i(Shader* shader, const char* name, int value1, int value2) {
-	glUniform2i(getUniformLocation(shader, name), value1, value2);
+void setUniform1i(Shader* shader, Uniform* uniform, int value) {
+	glUniform1i(getUniformLocation(shader, uniform), value);
 }
 
-void setUniform3i(Shader* shader, const char* name, int value1, int value2, int value3) {
-	glUniform3i(getUniformLocation(shader, name), value1, value2, value3);
+void setUniform2i(Shader* shader, Uniform* uniform, int value1, int value2) {
+	glUniform2i(getUniformLocation(shader, uniform), value1, value2);
 }
 
-void setUniform4i(Shader* shader, const char* name, int value1, int value2, int value3, int value4) {
-	glUniform4i(getUniformLocation(shader, name), value1, value2, value3, value4);
+void setUniform3i(Shader* shader, Uniform* uniform, int value1, int value2, int value3) {
+	glUniform3i(getUniformLocation(shader, uniform), value1, value2, value3);
 }
 
-void setUniform1f(Shader* shader, const char* name, float value) {
-	glUniform1f(getUniformLocation(shader, name), value);
+void setUniform4i(Shader* shader, Uniform* uniform, int value1, int value2, int value3, int value4) {
+	glUniform4i(getUniformLocation(shader, uniform), value1, value2, value3, value4);
 }
 
-void setUniform2f(Shader* shader, const char* name, float value1, float value2) {
-	glUniform2f(getUniformLocation(shader, name), value1, value2);
+void setUniform1f(Shader* shader, Uniform* uniform, float value) {
+	glUniform1f(getUniformLocation(shader, uniform), value);
 }
 
-void setUniform3f(Shader* shader, const char* name, float value1, float value2, float value3) {
-	glUniform3f(getUniformLocation(shader, name), value1, value2, value3);
+void setUniform2f(Shader* shader, Uniform* uniform, float value1, float value2) {
+	glUniform2f(getUniformLocation(shader, uniform), value1, value2);
 }
 
-void setUniform4f(Shader* shader, const char* name, float value1, float value2, float value3, float value4) {
-	glUniform4f(getUniformLocation(shader, name), value1, value2, value3, value4);
+void setUniform3f(Shader* shader, Uniform* uniform, float value1, float value2, float value3) {
+	glUniform3f(getUniformLocation(shader, uniform), value1, value2, value3);
+}
+
+void setUniform4f(Shader* shader, Uniform* uniform, float value1, float value2, float value3, float value4) {
+	glUniform4f(getUniformLocation(shader, uniform), value1, value2, value3, value4);
 }
 
 void initShdComp(ShdComp* component) {
@@ -204,10 +212,21 @@ static int loadShdComp(ShdComp* component) {
 }
 
 static void resetData(Shader* shader) {
-	shader->index = 0;
 	for(int i = 0; i < 4; ++ i) shader->attachedComponents[i] = NULL;
+
+	shader->uniformCache = NULL;
+	shader->index        = 0;
 }
 
-static int getUniformLocation(Shader* shader, const char* name) {
-	return glGetUniformLocation(shader->index, name);
+static int getUniformLocation(Shader* shader, StringKey* name) {
+	Value result;
+
+	if(getHashMap(shader->uniformCache, name, &result)) {
+		return AS_NUM(result);
+	} else {
+		int location = glGetUniformLocation(shader->index, name->chars);
+		insertHashMap(shader->uniformCache, name, NUM_VALUE(location));
+
+		return location;
+	}
 }

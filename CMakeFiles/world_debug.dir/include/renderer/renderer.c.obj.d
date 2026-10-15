@@ -18,4 +18,7 @@ CMakeFiles/world_debug.dir/include/renderer/renderer.c.obj: \
  C:/COPENG~1/include/buffers/vertex_buffer.h \
  C:/COPENG~1/include/buffers/buffer_base.h \
  C:/COPENG~1/include/buffers/index_buffer.h \
- C:/COPENG~1/include/shader/shader.h
+ C:/COPENG~1/include/shader/shader.h \
+ C:/COPENG~1/include/hashmap/hashmap.h \
+ C:/COPENG~1/include/hashmap/value.h \
+ C:/COPENG~1/include/hashmap/string_key.h

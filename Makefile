@@ -249,6 +249,87 @@ include/file/file.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\world_debug.dir\build.make CMakeFiles/world_debug.dir/include/file/file.c.s
 .PHONY : include/file/file.c.s
 
+include/hashmap/hashmap.obj: include/hashmap/hashmap.c.obj
+.PHONY : include/hashmap/hashmap.obj
+
+# target to build an object file
+include/hashmap/hashmap.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\world_build.dir\build.make CMakeFiles/world_build.dir/include/hashmap/hashmap.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\world_debug.dir\build.make CMakeFiles/world_debug.dir/include/hashmap/hashmap.c.obj
+.PHONY : include/hashmap/hashmap.c.obj
+
+include/hashmap/hashmap.i: include/hashmap/hashmap.c.i
+.PHONY : include/hashmap/hashmap.i
+
+# target to preprocess a source file
+include/hashmap/hashmap.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\world_build.dir\build.make CMakeFiles/world_build.dir/include/hashmap/hashmap.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\world_debug.dir\build.make CMakeFiles/world_debug.dir/include/hashmap/hashmap.c.i
+.PHONY : include/hashmap/hashmap.c.i
+
+include/hashmap/hashmap.s: include/hashmap/hashmap.c.s
+.PHONY : include/hashmap/hashmap.s
+
+# target to generate assembly for a file
+include/hashmap/hashmap.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\world_build.dir\build.make CMakeFiles/world_build.dir/include/hashmap/hashmap.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\world_debug.dir\build.make CMakeFiles/world_debug.dir/include/hashmap/hashmap.c.s
+.PHONY : include/hashmap/hashmap.c.s
+
+include/hashmap/string_key.obj: include/hashmap/string_key.c.obj
+.PHONY : include/hashmap/string_key.obj
+
+# target to build an object file
+include/hashmap/string_key.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\world_build.dir\build.make CMakeFiles/world_build.dir/include/hashmap/string_key.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\world_debug.dir\build.make CMakeFiles/world_debug.dir/include/hashmap/string_key.c.obj
+.PHONY : include/hashmap/string_key.c.obj
+
+include/hashmap/string_key.i: include/hashmap/string_key.c.i
+.PHONY : include/hashmap/string_key.i
+
+# target to preprocess a source file
+include/hashmap/string_key.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\world_build.dir\build.make CMakeFiles/world_build.dir/include/hashmap/string_key.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\world_debug.dir\build.make CMakeFiles/world_debug.dir/include/hashmap/string_key.c.i
+.PHONY : include/hashmap/string_key.c.i
+
+include/hashmap/string_key.s: include/hashmap/string_key.c.s
+.PHONY : include/hashmap/string_key.s
+
+# target to generate assembly for a file
+include/hashmap/string_key.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\world_build.dir\build.make CMakeFiles/world_build.dir/include/hashmap/string_key.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\world_debug.dir\build.make CMakeFiles/world_debug.dir/include/hashmap/string_key.c.s
+.PHONY : include/hashmap/string_key.c.s
+
+include/memory/memory.obj: include/memory/memory.c.obj
+.PHONY : include/memory/memory.obj
+
+# target to build an object file
+include/memory/memory.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\world_build.dir\build.make CMakeFiles/world_build.dir/include/memory/memory.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\world_debug.dir\build.make CMakeFiles/world_debug.dir/include/memory/memory.c.obj
+.PHONY : include/memory/memory.c.obj
+
+include/memory/memory.i: include/memory/memory.c.i
+.PHONY : include/memory/memory.i
+
+# target to preprocess a source file
+include/memory/memory.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\world_build.dir\build.make CMakeFiles/world_build.dir/include/memory/memory.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\world_debug.dir\build.make CMakeFiles/world_debug.dir/include/memory/memory.c.i
+.PHONY : include/memory/memory.c.i
+
+include/memory/memory.s: include/memory/memory.c.s
+.PHONY : include/memory/memory.s
+
+# target to generate assembly for a file
+include/memory/memory.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\world_build.dir\build.make CMakeFiles/world_build.dir/include/memory/memory.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\world_debug.dir\build.make CMakeFiles/world_debug.dir/include/memory/memory.c.s
+.PHONY : include/memory/memory.c.s
+
 include/renderer/renderer.obj: include/renderer/renderer.c.obj
 .PHONY : include/renderer/renderer.obj
 
@@ -433,6 +514,15 @@ help:
 	@echo ... include/file/file.obj
 	@echo ... include/file/file.i
 	@echo ... include/file/file.s
+	@echo ... include/hashmap/hashmap.obj
+	@echo ... include/hashmap/hashmap.i
+	@echo ... include/hashmap/hashmap.s
+	@echo ... include/hashmap/string_key.obj
+	@echo ... include/hashmap/string_key.i
+	@echo ... include/hashmap/string_key.s
+	@echo ... include/memory/memory.obj
+	@echo ... include/memory/memory.i
+	@echo ... include/memory/memory.s
 	@echo ... include/renderer/renderer.obj
 	@echo ... include/renderer/renderer.i
 	@echo ... include/renderer/renderer.s

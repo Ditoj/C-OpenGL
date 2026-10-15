@@ -18,6 +18,9 @@ CMakeFiles/world_debug.dir/src/main.c.obj: C:\C\ OpenGL\src\main.c \
  C:/COPENG~1/include/buffers/index_buffer.h \
  C:/COPENG~1/include/vertex_array/vertex_array.h \
  C:/COPENG~1/include/shader/shader.h \
+ C:/COPENG~1/include/hashmap/hashmap.h \
+ C:/COPENG~1/include/hashmap/value.h \
+ C:/COPENG~1/include/hashmap/string_key.h \
  C:/COPENG~1/include/renderer/renderer.h \
  C:/COPENG~1/include/texture/texture.h C:/msys64/ucrt64/include/stdio.h \
  C:/msys64/ucrt64/include/corecrt_stdio_config.h \

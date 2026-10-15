@@ -85,6 +85,83 @@ CMakeFiles/world_build.dir/include/file/file.c.obj
  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/mm_malloc.h
  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/syslimits.h
 
+CMakeFiles/world_build.dir/include/hashmap/hashmap.c.obj
+ C:/C OpenGL/include/hashmap/hashmap.c
+ C:/C OpenGL/include/common/common.h
+ C:/C OpenGL/include/hashmap/hashmap.h
+ C:/C OpenGL/include/hashmap/string_key.h
+ C:/C OpenGL/include/hashmap/value.h
+ C:/C OpenGL/include/memory/memory.h
+ C:/msys64/ucrt64/include/_mingw.h
+ C:/msys64/ucrt64/include/_mingw_mac.h
+ C:/msys64/ucrt64/include/_mingw_secapi.h
+ C:/msys64/ucrt64/include/corecrt.h
+ C:/msys64/ucrt64/include/corecrt_wstdlib.h
+ C:/msys64/ucrt64/include/crtdefs.h
+ C:/msys64/ucrt64/include/errno.h
+ C:/msys64/ucrt64/include/limits.h
+ C:/msys64/ucrt64/include/malloc.h
+ C:/msys64/ucrt64/include/sdks/_mingw_ddk.h
+ C:/msys64/ucrt64/include/sec_api/stdlib_s.h
+ C:/msys64/ucrt64/include/sec_api/string_s.h
+ C:/msys64/ucrt64/include/stddef.h
+ C:/msys64/ucrt64/include/stdint.h
+ C:/msys64/ucrt64/include/stdlib.h
+ C:/msys64/ucrt64/include/string.h
+ C:/msys64/ucrt64/include/vadefs.h
+ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/limits.h
+ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/mm_malloc.h
+ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdbool.h
+ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stddef.h
+ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdint.h
+ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/syslimits.h
+
+CMakeFiles/world_build.dir/include/hashmap/string_key.c.obj
+ C:/C OpenGL/include/hashmap/string_key.c
+ C:/C OpenGL/include/common/common.h
+ C:/C OpenGL/include/hashmap/string_key.h
+ C:/C OpenGL/include/memory/memory.h
+ C:/msys64/ucrt64/include/_mingw.h
+ C:/msys64/ucrt64/include/_mingw_mac.h
+ C:/msys64/ucrt64/include/_mingw_secapi.h
+ C:/msys64/ucrt64/include/corecrt.h
+ C:/msys64/ucrt64/include/crtdefs.h
+ C:/msys64/ucrt64/include/sdks/_mingw_ddk.h
+ C:/msys64/ucrt64/include/sec_api/string_s.h
+ C:/msys64/ucrt64/include/stddef.h
+ C:/msys64/ucrt64/include/stdint.h
+ C:/msys64/ucrt64/include/string.h
+ C:/msys64/ucrt64/include/vadefs.h
+ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdbool.h
+ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stddef.h
+ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdint.h
+
+CMakeFiles/world_build.dir/include/memory/memory.c.obj
+ C:/C OpenGL/include/memory/memory.c
+ C:/C OpenGL/include/common/common.h
+ C:/C OpenGL/include/memory/memory.h
+ C:/msys64/ucrt64/include/_mingw.h
+ C:/msys64/ucrt64/include/_mingw_mac.h
+ C:/msys64/ucrt64/include/_mingw_secapi.h
+ C:/msys64/ucrt64/include/corecrt.h
+ C:/msys64/ucrt64/include/corecrt_wstdlib.h
+ C:/msys64/ucrt64/include/crtdefs.h
+ C:/msys64/ucrt64/include/errno.h
+ C:/msys64/ucrt64/include/limits.h
+ C:/msys64/ucrt64/include/malloc.h
+ C:/msys64/ucrt64/include/sdks/_mingw_ddk.h
+ C:/msys64/ucrt64/include/sec_api/stdlib_s.h
+ C:/msys64/ucrt64/include/stddef.h
+ C:/msys64/ucrt64/include/stdint.h
+ C:/msys64/ucrt64/include/stdlib.h
+ C:/msys64/ucrt64/include/vadefs.h
+ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/limits.h
+ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/mm_malloc.h
+ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdbool.h
+ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stddef.h
+ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdint.h
+ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/syslimits.h
+
 CMakeFiles/world_build.dir/include/renderer/renderer.c.obj
  C:/C OpenGL/include/renderer/renderer.c
  C:/C OpenGL/include/KHR/khrplatform.h
@@ -95,6 +172,9 @@ CMakeFiles/world_build.dir/include/renderer/renderer.c.obj
  C:/C OpenGL/include/common/opengl_common.h
  C:/C OpenGL/include/glad/glad.h
  C:/C OpenGL/include/glfw/glfw3.h
+ C:/C OpenGL/include/hashmap/hashmap.h
+ C:/C OpenGL/include/hashmap/string_key.h
+ C:/C OpenGL/include/hashmap/value.h
  C:/C OpenGL/include/renderer/renderer.h
  C:/C OpenGL/include/shader/shader.h
  C:/C OpenGL/include/vertex_array/vertex_array.h
@@ -119,6 +199,10 @@ CMakeFiles/world_build.dir/include/shader/shader.c.obj
  C:/C OpenGL/include/file/file.h
  C:/C OpenGL/include/glad/glad.h
  C:/C OpenGL/include/glfw/glfw3.h
+ C:/C OpenGL/include/hashmap/hashmap.h
+ C:/C OpenGL/include/hashmap/string_key.h
+ C:/C OpenGL/include/hashmap/value.h
+ C:/C OpenGL/include/memory/memory.h
  C:/C OpenGL/include/shader/shader.h
  C:/msys64/ucrt64/include/_mingw.h
  C:/msys64/ucrt64/include/_mingw_mac.h
@@ -508,6 +592,9 @@ CMakeFiles/world_build.dir/src/main.c.obj
  C:/C OpenGL/include/common/opengl_common.h
  C:/C OpenGL/include/glad/glad.h
  C:/C OpenGL/include/glfw/glfw3.h
+ C:/C OpenGL/include/hashmap/hashmap.h
+ C:/C OpenGL/include/hashmap/string_key.h
+ C:/C OpenGL/include/hashmap/value.h
  C:/C OpenGL/include/renderer/renderer.h
  C:/C OpenGL/include/shader/shader.h
  C:/C OpenGL/include/texture/texture.h

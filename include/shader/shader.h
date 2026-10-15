@@ -2,6 +2,9 @@
 #define program_shader_h
 
 #include "common/common.h"
+#include "hashmap/hashmap.h"
+#include "hashmap/string_key.h"
+#include "hashmap/value.h"
 
 typedef enum {
 	SHADER_VERTEX,
@@ -18,9 +21,13 @@ typedef struct {
 } ShdComp; //Shader Component
 
 typedef struct {
-	unsigned int index;
 	ShdComp* attachedComponents[4];
+	HashMap* uniformCache;
+	unsigned int index;
 } Shader;
+
+//using StringKey as a type name here is obnoxious
+typedef StringKey Uniform;
 
 void initShader(Shader* shader);
 void freeShader(Shader* shader);
@@ -29,14 +36,15 @@ void attachComponent(Shader* shader, ShdComp* component);
 int linkShader(Shader* shader, bool deleteComponents);
 void setTargetShader(Shader* shader);
 void resetTargetShader();
-void setUniform1i(Shader* shader, const char* name, int value);
-void setUniform2i(Shader* shader, const char* name, int value1, int value2);
-void setUniform3i(Shader* shader, const char* name, int value1, int value2, int value3);
-void setUniform4i(Shader* shader, const char* name, int value1, int value2, int value3, int value4);
-void setUniform1f(Shader* shader, const char* name, float value);
-void setUniform2f(Shader* shader, const char* name, float value1, float value2);
-void setUniform3f(Shader* shader, const char* name, float value1, float value2, float value3);
-void setUniform4f(Shader* shader, const char* name, float value1, float value2, float value3, float value4);
+void uniformFromString(Uniform* uniform, const char* string);
+void setUniform1i(Shader* shader, Uniform* uniform, int value);
+void setUniform2i(Shader* shader, Uniform* uniform, int value1, int value2);
+void setUniform3i(Shader* shader, Uniform* uniform, int value1, int value2, int value3);
+void setUniform4i(Shader* shader, Uniform* uniform, int value1, int value2, int value3, int value4);
+void setUniform1f(Shader* shader, Uniform* uniform, float value);
+void setUniform2f(Shader* shader, Uniform* uniform, float value1, float value2);
+void setUniform3f(Shader* shader, Uniform* uniform, float value1, float value2, float value3);
+void setUniform4f(Shader* shader, Uniform* uniform, float value1, float value2, float value3, float value4);
 
 void initShdComp(ShdComp* component);
 void freeShdComp(ShdComp* component);
