@@ -1,4 +1,0 @@
-C:/C OpenGL/CMakeFiles/world_build.dir
-C:/C OpenGL/CMakeFiles/world_debug.dir
-C:/C OpenGL/CMakeFiles/edit_cache.dir
-C:/C OpenGL/CMakeFiles/rebuild_cache.dir
