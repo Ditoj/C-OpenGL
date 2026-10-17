@@ -145,6 +145,14 @@ void setUniform4f(Shader* shader, Uniform* uniform, float value1, float value2, 
 	glUniform4f(getUniformLocation(shader, uniform), value1, value2, value3, value4);
 }
 
+void setUniformMat3f(Shader* shader, Uniform* uniform, const mat3 matrix) {
+	glUniformMatrix3fv(getUniformLocation(shader, uniform), 1, GL_FALSE, &matrix[0][0]);
+}
+
+void setUniformMat4f(Shader* shader, Uniform* uniform, const mat4 matrix) {
+	glUniformMatrix4fv(getUniformLocation(shader, uniform), 1, GL_FALSE, &matrix[0][0]);
+}
+
 void initShdComp(ShdComp* component) {
 	component->index  = 0;
 	component->type   = SHADER_ERROR;
@@ -224,11 +232,13 @@ static int getUniformLocation(Shader* shader, StringKey* name) {
 	Value result;
 
 	if(getHashMap(shader->uniformCache, name, &result)) {
+		printf("Cached result for uniform \"%s\": %d\n", name->chars, AS_NUM(result));
 		return AS_NUM(result);
 	} else {
 		int location = glGetUniformLocation(shader->index, name->chars);
 		insertHashMap(shader->uniformCache, name, NUM_VALUE(location));
 
+		printf("Calculated result for uniform \"%s\": %d\n", name->chars, location);
 		return location;
 	}
 }

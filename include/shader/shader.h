@@ -5,6 +5,7 @@
 #include "hashmap/hashmap.h"
 #include "hashmap/string_key.h"
 #include "hashmap/value.h"
+#include "cglm/cglm.h"
 
 typedef enum {
 	SHADER_VERTEX,
@@ -45,6 +46,8 @@ void setUniform1f(Shader* shader, Uniform* uniform, float value);
 void setUniform2f(Shader* shader, Uniform* uniform, float value1, float value2);
 void setUniform3f(Shader* shader, Uniform* uniform, float value1, float value2, float value3);
 void setUniform4f(Shader* shader, Uniform* uniform, float value1, float value2, float value3, float value4);
+void setUniformMat3f(Shader* shader, Uniform* uniform, const mat3 matrix);
+void setUniformMat4f(Shader* shader, Uniform* uniform, const mat4 matrix);
 
 void initShdComp(ShdComp* component);
 void freeShdComp(ShdComp* component);

@@ -8,6 +8,7 @@
 #include "shader/shader.h"
 #include "renderer/renderer.h"
 #include "texture/texture.h"
+#include "cglm/cglm.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -85,11 +86,29 @@ int main() {
 	Texture2D texture;
 	initTexture2D_fromImage(&texture, PROJECT_ROOT_PATH "img/container.png", 0);
 
+	mat4 model = GLM_MAT4_IDENTITY_INIT;
+	glm_translate(model, (vec3) {5., 5., -5.});
+
+	mat4 view = GLM_MAT4_IDENTITY_INIT;
+
+	mat4 projection = GLM_MAT4_IDENTITY_INIT;
+	glm_ortho(0, 10, 10, 0, 0.1, 32000, projection);
+
 	setTargetShader(&shader);
 
 	Uniform textureUniform;
 	uniformFromString(&textureUniform, "u_texture");
 	setUniform1i(&shader, &textureUniform, 0);
+
+	Uniform u_model;
+	Uniform u_view;
+	Uniform u_proj;
+	uniformFromString(&u_model, "u_model");
+	uniformFromString(&u_view, "u_view");
+	uniformFromString(&u_proj, "u_proj");
+	setUniformMat4f(&shader, &u_model, model);
+	setUniformMat4f(&shader, &u_view, view);
+	setUniformMat4f(&shader, &u_proj, projection);
 
 	while(!glfwWindowShouldClose(window)) {
 		clearBuffers(GL_COLOR_BUFFER_BIT);
