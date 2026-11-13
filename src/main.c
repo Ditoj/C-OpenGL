@@ -1,21 +1,21 @@
+#include "array/array.h"
+#include "buffers/index_buffer.h"
+#include "buffers/vertex_buffer.h"
+#include "cglm/cglm.h"
 #include "common/common.h"
 #include "glad/glad.h"
 #include "glfw/glfw3.h"
-#include "array/array.h"
-#include "buffers/vertex_buffer.h"
-#include "buffers/index_buffer.h"
-#include "vertex_array/vertex_array.h"
-#include "shader/shader.h"
 #include "renderer/renderer.h"
+#include "shader/shader.h"
 #include "texture/texture.h"
-#include "cglm/cglm.h"
+#include "vertex_array/vertex_array.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 
-#define WINDOW_WIDTH  640
+#define WINDOW_WIDTH 640
 #define WINDOW_HEIGHT 480
-#define WINDOW_TITLE  "DitoJ"
+#define WINDOW_TITLE "DitoJ"
 
 #define EXIT_GLFW_LOAD_ERROR 1
 #define EXIT_GLAD_LOAD_ERROR 2
@@ -23,139 +23,140 @@
 #define PROJECT_ROOT_PATH "../../"
 
 static const float vertexData[] = {
-	//x    y  r   g   b   u   v
-	-.5, -.5, 1., 0., 0., 0., 0., //bottom-left
-	 .5, -.5, 0., 1., 0., 1., 0., //bottom-right
-	 .5,  .5, 0., 0., 1., 1., 1., //top-right
-	-.5,  .5, 1., 1., 1., 0., 1.  //top-left
+    // x    y  r   g   b   u   v
+    -.5, -.5, 1., 0., 0., 0., 0., // bottom-left
+    .5,  -.5, 0., 1., 0., 1., 0., // bottom-right
+    .5,  .5,  0., 0., 1., 1., 1., // top-right
+    -.5, .5,  1., 1., 1., 0., 1.  // top-left
 };
 
-static unsigned char indexData[] = {
-	0, 1, 2,
-	2, 3, 0
-};
+static unsigned char indexData[] = {0, 1, 2, 2, 3, 0};
 
-static void errorCallback(int error, const char* description);
-static void error(int code, const char* description);
+static void errorCallback(int error, const char *description);
+static void error(int code, const char *description);
 
-void initGLFW_GLAD(GLFWwindow** window);
+void initGLFW_GLAD(GLFWwindow **window);
 
 int main() {
-	GLFWwindow* window;
-	initGLFW_GLAD(&window);
+  GLFWwindow *window;
+  initGLFW_GLAD(&window);
 
-	VBO vbo;
-	initVBO_FromData(&vbo, vertexData, sizeof(vertexData));
+  VBO vbo;
+  initVBO_FromData(&vbo, vertexData, sizeof(vertexData));
 
-	VAO vao;
-	initVAO(&vao);
-	setTargetVAO(&vao);
-	addAttributeVAO(&vao, 2, GL_FLOAT);
-	addAttributeVAO(&vao, 3, GL_FLOAT);
-	addAttributeVAO(&vao, 2, GL_FLOAT);
-	patchVAO(&vao);
+  VAO vao;
+  initVAO(&vao);
+  setTargetVAO(&vao);
+  addAttributeVAO(&vao, 2, GL_FLOAT);
+  addAttributeVAO(&vao, 3, GL_FLOAT);
+  addAttributeVAO(&vao, 2, GL_FLOAT);
+  patchVAO(&vao);
 
-	IBO ibo;
-	initIBO_FromData(&ibo, indexData, sizeof(indexData), GL_UNSIGNED_BYTE);
+  IBO ibo;
+  initIBO_FromData(&ibo, indexData, sizeof(indexData), GL_UNSIGNED_BYTE);
 
-	Shader shader;
-	initShader(&shader);
+  Shader shader;
+  initShader(&shader);
 
-	ShdComp fragment;
-	ShdComp vertex;
-	initShdComp(&fragment);
-	initShdComp(&vertex);
-	loadShdCompFromFile(&vertex, SHADER_VERTEX, PROJECT_ROOT_PATH "shader/base/base.vsh");
-	loadShdCompFromFile(&fragment, SHADER_FRAGMENT, PROJECT_ROOT_PATH "shader/base/base.fsh");
+  ShdComp fragment;
+  ShdComp vertex;
+  initShdComp(&fragment);
+  initShdComp(&vertex);
+  loadShdCompFromFile(&vertex, SHADER_VERTEX,
+                      PROJECT_ROOT_PATH "shader/base/base.vsh");
+  loadShdCompFromFile(&fragment, SHADER_FRAGMENT,
+                      PROJECT_ROOT_PATH "shader/base/base.fsh");
 
-	attachComponent(&shader, &fragment);
-	attachComponent(&shader, &vertex);
+  attachComponent(&shader, &fragment);
+  attachComponent(&shader, &vertex);
 
-	linkShader(&shader, true);
+  linkShader(&shader, true);
 
-	glClearColor(0.1f, 0.2f, 0.6f, 1.f);
+  glClearColor(0.1f, 0.2f, 0.6f, 1.f);
 
-	Renderer renderer;
-	initRenderer(&renderer);
-	setVAO_Renderer(&renderer, &vao);
-	setVBO_Renderer(&renderer, &vbo);
-	setIBO_Renderer(&renderer, &ibo);
-	setShader_Renderer(&renderer, &shader);
-	setMode_Renderer(&renderer, GL_TRIANGLES);
+  Renderer renderer;
+  initRenderer(&renderer);
+  setVAO_Renderer(&renderer, &vao);
+  setVBO_Renderer(&renderer, &vbo);
+  setIBO_Renderer(&renderer, &ibo);
+  setShader_Renderer(&renderer, &shader);
+  setMode_Renderer(&renderer, GL_TRIANGLES);
 
-	Texture2D texture;
-	initTexture2D_fromImage(&texture, PROJECT_ROOT_PATH "img/container.png", 0);
+  Texture2D texture;
+  initTexture2D_fromImage(&texture, PROJECT_ROOT_PATH "img/container.png", 0);
 
-	mat4 model = GLM_MAT4_IDENTITY_INIT;
-	glm_translate(model, (vec3) {5., 5., -5.});
+  mat4 model = GLM_MAT4_IDENTITY_INIT;
+  glm_translate(model, (vec3){5., 5., -5.});
 
-	mat4 view = GLM_MAT4_IDENTITY_INIT;
+  mat4 view = GLM_MAT4_IDENTITY_INIT;
 
-	mat4 projection = GLM_MAT4_IDENTITY_INIT;
-	glm_ortho(0, 10, 10, 0, 0.1, 32000, projection);
+  mat4 projection = GLM_MAT4_IDENTITY_INIT;
+  glm_ortho(0, 10, 10, 0, 0.1, 32000, projection);
 
-	setTargetShader(&shader);
+  setTargetShader(&shader);
 
-	Uniform textureUniform;
-	uniformFromString(&textureUniform, "u_texture");
-	setUniform1i(&shader, &textureUniform, 0);
+  Uniform textureUniform;
+  uniformFromString(&textureUniform, "u_texture");
+  setUniform1i(&shader, &textureUniform, 0);
 
-	Uniform u_model;
-	Uniform u_view;
-	Uniform u_proj;
-	uniformFromString(&u_model, "u_model");
-	uniformFromString(&u_view, "u_view");
-	uniformFromString(&u_proj, "u_proj");
-	setUniformMat4f(&shader, &u_model, model);
-	setUniformMat4f(&shader, &u_view, view);
-	setUniformMat4f(&shader, &u_proj, projection);
+  Uniform u_model;
+  Uniform u_view;
+  Uniform u_proj;
+  uniformFromString(&u_model, "u_model");
+  uniformFromString(&u_view, "u_view");
+  uniformFromString(&u_proj, "u_proj");
+  setUniformMat4f(&shader, &u_model, model);
+  setUniformMat4f(&shader, &u_view, view);
+  setUniformMat4f(&shader, &u_proj, projection);
 
-	while(!glfwWindowShouldClose(window)) {
-		clearBuffers(GL_COLOR_BUFFER_BIT);
-		drawRenderer(&renderer);
+  while (!glfwWindowShouldClose(window)) {
+    clearBuffers(GL_COLOR_BUFFER_BIT);
+    drawRenderer(&renderer);
 
-		glfwSwapBuffers(window);
-		glfwPollEvents();
-	}
+    glfwSwapBuffers(window);
+    glfwPollEvents();
+  }
 
-	freeVBO(&vbo);
-	freeVAO(&vao);
-	freeIBO(&ibo);
-	freeShader(&shader);
-	freeRenderer(&renderer);
-	freeTexture2D(&texture);
+  freeVBO(&vbo);
+  freeVAO(&vao);
+  freeIBO(&ibo);
+  freeShader(&shader);
+  freeRenderer(&renderer);
+  freeTexture2D(&texture);
 
-	glfwDestroyWindow(window);
-	glfwTerminate();
+  glfwDestroyWindow(window);
+  glfwTerminate();
 }
 
-static void errorCallback(int error, const char* description) {
-	fprintf(stderr, "(GLFW) Error [%d]: %s\n", error, description);
+static void errorCallback(int error, const char *description) {
+  fprintf(stderr, "(GLFW) Error [%d]: %s\n", error, description);
 }
 
-static void error(int code, const char* description) {
-	fprintf(stderr, "Error [%d]: %s", code, description);
-	exit(code);
+static void error(int code, const char *description) {
+  fprintf(stderr, "Error [%d]: %s", code, description);
+  exit(code);
 }
 
-void initGLFW_GLAD(GLFWwindow** window) {
-	if(!glfwInit()) error(EXIT_GLFW_LOAD_ERROR, "Error initializing GLFW.");
+void initGLFW_GLAD(GLFWwindow **window) {
+  if (!glfwInit())
+    error(EXIT_GLFW_LOAD_ERROR, "Error initializing GLFW.");
 
-	glfwSetErrorCallback(errorCallback);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	*window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, NULL, NULL);
+  glfwSetErrorCallback(errorCallback);
+  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+  glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+  *window =
+      glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, NULL, NULL);
 
-	if(!*window) {
-		glfwTerminate();
-		error(EXIT_GLFW_LOAD_ERROR, "Error creating window.");
-	}
+  if (!*window) {
+    glfwTerminate();
+    error(EXIT_GLFW_LOAD_ERROR, "Error creating window.");
+  }
 
-	glfwMakeContextCurrent(*window);
-	glfwSwapInterval(1);
+  glfwMakeContextCurrent(*window);
+  glfwSwapInterval(1);
 
-	if(!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {
-		error(EXIT_GLAD_LOAD_ERROR, "Error getting GLAD GL loader.");
-	}
+  if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+    error(EXIT_GLAD_LOAD_ERROR, "Error getting GLAD GL loader.");
+  }
 }
